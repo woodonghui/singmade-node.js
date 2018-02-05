@@ -1,0 +1,48 @@
+<% if (message) { %>
+	<div class="<%= message.status %> message"><%- message.messages %></div>
+<% } %>
+
+<form class="form align" id="form" action="/u/profile/update" method="post" onsubmit="document.getElementById('submit').disabled = true;">
+
+	<div>
+	<label>account</label>
+	<% if (user.provider == 'local') { %>
+		<a href="/u/account" class="link"><%= user.user_id %></a>
+	<% } else { %>
+		<img width="25" height="25" src="<%= user.profile_image_url %>" /> <%= user.displayName %> (<%= user.provider %>)
+	<% } %>
+	</div>
+
+	<div>
+	<label>title</label>
+	<input type="radio" name="profile[title]" value="mr" <%= profile.title == 'mr' ? 'checked' : ''%>>Mr
+	<input type="radio" name="profile[title]" value="miss" <%= profile.title == 'miss' ? 'checked' : ''%>>Miss
+	<input type="radio" name="profile[title]" value="mrs" <%= profile.title == 'mrs' ? 'checked' : ''%>>Mrs
+	</div>
+
+	<div>
+	<label>your full name</label>
+	<input type="text" name="profile[displayName]" placeholder="Your Full Name" value="<%= profile.displayName || '' %>">
+	</div>
+
+	<div>
+	<label>email</label>
+	<input type="text" name="profile[email]" placeholder="Email Address" value="<%= profile.email || '' %>">
+	</div>
+
+	<div>
+	<label>address</label>
+	<input type="text" name="profile[address]" value="<%= profile.address || '' %>">
+	</div>
+
+	<div>
+	<label>phone</label>
+	<input type="text" name="profile[phone]" value="<%= profile.phone || '' %>">
+	</div>
+
+	<div>
+	<label>&nbsp;</label>
+	<button id="submit" type="submit">Update Profile</button>
+	</div>
+	
+</form>

@@ -1,0 +1,46 @@
+<% layout('../layout') -%>
+
+<style type="text/css">
+	#loginForm input[type="text"], #loginForm input[type="password"] {
+		width: 350px;
+	}
+</style>
+
+<div class="caption-container" style="margin: 20px auto; width: 350px;">
+	<div class="caption">
+		member login
+		<a class="right link" href="/signup">sign up</a>
+	</div>
+	<div class="content">
+	
+		<% if (errors) { %>
+		<div class="error message"><%- errors %></div>
+		<% } %>
+
+		<% if (messages) { %>
+		<div class="success message"><%- messages %></div>
+		<% } %>
+	
+		<form class="form" id="loginForm" action="/auth" method="post" onsubmit="document.getElementById('submit').disabled = true;">
+			<input type="text" id="username" name="username" placeholder="Email" value="<%= username %>">
+			<input type="password" id="password" name="password" placeholder="Password" >
+			<button id="submit" type="submit">Log in</button> <a class="link" href="/forgot-password">Forgot password?</a>
+		</form>
+	
+		<p>or Login with social media accounts</p>
+		<a class="social-signup-button" href="/auth/facebook">
+		<i class="fa fa-facebook-square fa-3x facebook"></i>
+		</a>
+		<a class="social-signup-button" href="/auth/twitter">
+		<i class="fa fa-twitter-square fa-3x twitter"></i>
+		</a>
+		<a class="social-signup-button" href="/auth/sina">
+		<img src="http://res.cloudinary.com/boutiquesg/image/upload/v1386337265/weibo_xivxin.png" style="vertical-align: bottom;">
+		</a>
+
+	</div>
+</div>
+
+	
+
+

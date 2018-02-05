@@ -1,0 +1,59 @@
+<% layout('../layout') -%>
+
+<% if (designer) { %>
+<div id="selected-designer" class="plain-container cols-2col">
+	<div class="col-1">
+		<img src="<%= designer.avatar.small %>" style="border-radius: 50px;">
+	</div>
+	<div class="col-2" style="margin-left: 110px;">
+		<div class="name"><%= designer.name %>, <%= designer.country %></div>
+		<div class="profile"><%- designer.profile %></div>
+	</div>
+</div>	
+<% } %>
+
+<% if (grid && grid.length >=4 ) { %>
+<div class="grid-container clear">
+	<div class="layout cell">
+		<a href="/piece/<%= grid[3].slug_id %>"><img src="<%= grid[3].grid_images.grid_4 %>"></a>
+	</div>
+
+	<div class="layout">
+		<div class="clear">
+			<div class="layout cell">
+				<a href="/piece/<%= grid[0].slug_id %>"><img src="<%= grid[0].grid_images.grid_1 %>"></a>
+				<% if (grid[0].tag) { %>
+				<p class="header"><%= grid[0].tag %></p>
+				<% } %>
+			</div>
+			<div class="layout cell">
+				<a href="/piece/<%= grid[1].slug_id %>"><img src="<%= grid[1].grid_images.grid_2 %>"></a>
+				<% if (grid[1].tag) { %>
+				<p class="header"><%= grid[1].tag %></p>
+				<% } %>
+			</div>
+			<div class="layout cell">
+				<a href="/piece/<%= grid[2].slug_id %>"><img src="<%= grid[2].grid_images.grid_3 %>"></a>
+			</div>
+		</div>
+		<div class="clear">
+			<div class="layout cell"><a href="/designer/huang-yichuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/v1382347184/huang-yi-chuang_fvygp9.jpg"></a></div>
+			<div class="layout cell"><a href="/designer/esther-ko"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1367486741/Esther_Ko_ngkiu8.jpg"></a></div>
+			<div class="layout cell"><a href="/designer/dong-s"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1366874823/582511_103222166501456_1105958735_n_prxrte.jpg"></a></div>
+			<div class="layout cell"><a href="/designer/mu-huixi"><img src="http://res.cloudinary.com/boutiquesg/image/upload/e_grayscale/v1387263224/Lita_qoywbf.png"></a></div>
+			<div class="layout cell"><a href="/designer/esther-ko"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1362156363/Esther_Ko_okmtzd.jpg"></a></div>
+		</div>
+	</div>
+</div>
+<% } %>
+
+
+<div class="caption-container">
+	<div class="caption">
+		Designs by <%= designer.name %>
+		<div class="right">Sort: 
+			<a href="/<%= breadcrumb.join('/') %>?<%= query %><%= query? '&date=1' : 'date=1' %>"><i class="fa fa-calendar"></i> Newest</a> &nbsp;&nbsp; <a href="/<%= breadcrumb.join('/') %>?<%= query %><%= query? '&price=1' : 'price=1' %>"><i class="fa fa-sort-numeric-asc"></i> Price</a>
+		</div>
+	</div>
+	<%- partial('partial-table-view.ejs') %>	
+</div>

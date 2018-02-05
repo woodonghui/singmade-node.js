@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="/js/vendor/underscore-min.js"></script>
+    <script src="/js/vendor/backbone-min.js"></script>
+
+  </head>
+  <body style="margin-top: 20px; margin-bottom: 60px; color: #333;">
+    
+  <div id="main" role="main" style="width: 960px; margin: auto;">
+    <h3 class="muted"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_scale,w_170/v1384063847/singmade-logo-pink_mi8dms.png" /> Admin</h3>
+    
+    <div class="navbar navbar-default" role="navigation">
+
+      <p class="navbar-text navbar-right">Logged in as <%= user.displayName %>, <a href="/logout" class="navbar-link" style="text-decoration: underline;">Logout</a></p>
+      
+      <div>
+        <ul class="nav navbar-nav">
+          <li><a href="/admin">Home</a></li>
+          <li><a href="/admin/products">Products</a></li>
+          <li><a href="#">Orders</a></li>
+          <li><a href="#">Profile</a></li>
+          <% if (user.user_type == 'admin') { %>
+          <li><a href="/admin/designers">Designers</a></li>
+          <li><a href="/admin/users">Users</a></li>
+          <li><a href="/admin/categories">Catalog</a></li>
+          <% } %>
+
+        </ul>
+      </div>
+      
+    </div>
+
+    <%-body -%>
+  </div>
+  </body>
+</html>

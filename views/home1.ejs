@@ -1,0 +1,75 @@
+<% layout('layout') -%>
+
+<div class="grid-container clear">
+	<div class="layout cell c1"><a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,h_315,w_350/cz94oawnwuvbfga7vbhu.jpg"></a>
+		<p class="header">New Arrivals</p>
+	</div>
+
+	<div class="layout">
+		<div class="clear">
+			<div class="layout cell c2">
+				<a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,h_200,w_200/rqpedgbwbyesvo5jgblk.jpg"></a>
+			</div>
+			<div class="layout cell c3">
+				<a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,h_200,w_200/jrna1qameagzhac61gxw.jpg"></a>
+			</div>
+			<div class="layout cell c4">
+				<a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,h_200,w_130/ewtdlywbre0ohrmbmdlh.jpg"></a>
+			</div>
+		</div>
+		<div class="clear">
+			<div class="layout cell c5"><a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/v1382347184/huang-yi-chuang_fvygp9.jpg"></a></div>
+			<div class="layout cell c5"><a href="/designer/esther-ko"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1367486741/Esther_Ko_ngkiu8.jpg"></a></div>
+			<div class="layout cell c5"><a href="/"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1366874823/582511_103222166501456_1105958735_n_prxrte.jpg"></a></div>
+			<div class="layout cell c5"><a href="/designer/maye"><img src="http://res.cloudinary.com/boutiquesg/image/upload/e_grayscale/v1387263224/Lita_qoywbf.png"></a></div>
+			<div class="layout cell c5"><a href="/"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1362156363/Esther_Ko_okmtzd.jpg"></a></div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="grid-container clear">
+	<div class="layout">
+		<div class="clear">
+
+			<div class="layout clear">
+				<div class="cell header">
+					Accessories
+				</div>
+				<div class="cell c2-1">
+					<a href="/piece/<%= grid3[0].slug_id %>">
+						<img src="<%= grid3[0].grid_images.grid_1_2 %>">
+					</a>
+				</div>
+			</div>
+
+			<div class="layout cell c3">
+				<a href="/piece/<%= grid3[1].slug_id %>">
+					<img src="<%= grid3[1].grid_images.grid_2 %>">
+				</a>
+			</div>
+			<div class="layout cell c4">
+				<a href="/piece/<%= grid3[2].slug_id %>">
+					<img src="<%= grid3[2].grid_images.grid_3 %>">
+				</a>
+			</div>
+		</div>
+		<div class="clear">
+			<div class="layout cell c5"><a href="/designer/yi-chuan"><img src="http://res.cloudinary.com/boutiquesg/image/upload/v1382347184/huang-yi-chuang_fvygp9.jpg"></a></div>
+			<div class="layout cell c5"><a href="/designer/esther-ko"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1367486741/Esther_Ko_ngkiu8.jpg"></a></div>
+			<div class="layout cell c5"><a href="/"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1366874823/582511_103222166501456_1105958735_n_prxrte.jpg"></a></div>
+			<div class="layout cell c5"><a href="/designer/maye"><img src="http://res.cloudinary.com/boutiquesg/image/upload/e_grayscale/v1387263224/Lita_qoywbf.png"></a></div>
+			<div class="layout cell c5"><a href="/designer/esther-ko"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_fill,e_grayscale,g_center,h_100,w_100/v1362156363/Esther_Ko_okmtzd.jpg"></a></div>
+		</div>
+	</div>
+
+	<div class="layout cell c1">
+		<a href="/piece/<%= grid3[3].slug_id %>">
+			<img src="<%= grid3[3].grid_images.grid_4 %>">
+		</a>
+		<p><%= grid3[3].title %> designed by <%= grid3[3].designer.name %></p>
+	</div>
+
+</div>

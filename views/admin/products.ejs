@@ -1,0 +1,82 @@
+<% layout('./layout') -%>
+
+<div style="padding: 10px;">
+
+  <div style="margin-bottom: 20px;">
+    <a class="btn btn-primary" href="/admin/add/product">Add Product</a>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Tags</th>
+          <th>Price</th>
+          <% if (user.user_type=='admin') { %>
+          <th>Price</th>
+          <% } %>
+          <th>Action</th>
+        </tr>
+        <% for(var i=0; i<products.length; i++) {%>
+        <tr>
+          <td><%= (currentPage-1)*16 + i+1 %> <a target="_blank" href="/admin/product-images/<%= products[i].slug_id %>"><img src="<%=products[i].thumbnail_image.url %>"></a></td>
+          <td><a target="_blank" href="/admin/product/<%= products[i].slug_id %>"><%= products[i].title %></a></td>
+          <td><%= products[i].group %> / <%= products[i].category %> / <%= products[i].subcategory %></td>
+          <td><%= products[i].tags %></td>
+          <td><%= products[i].currency %> <%= products[i].base_price %></td>
+          <% if (user.user_type=='admin') { %>
+          <td><%= products[i].currency %> <%= products[i].price %></td>
+          <% } %>
+          <td>
+            <a target="_blank" href="/admin/product/<%= products[i].slug_id %>">Edit</a> / <a target="_blank" href="/admin/product-images/<%= products[i].slug_id %>">Manage Images</a> / 
+            <a class="remove" href="/admin/delete/product/<%= products[i].slug_id %>">Remove</a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <ul class="pagination">
+      <li class="<%= (currentPage==1 ? 'active' : '') %>"><a href="/admin/products?page=1">1</a></li>
+
+      <% if(currentPage > 3) { %>
+      <li><a href="#">...</a></li>
+      <% } %>
+  
+      <% if(currentPage - 1 > 1) { %>
+      <li class="<%= (currentPage==currentPage - 1 ? 'active' : '') %>"><a href="/admin/products?page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+      <% } %>
+      
+      <% if(currentPage > 1 && currentPage < maxPage) { %>
+      <li class="active"><a href="/admin/products?page=<%= currentPage %>"><%= currentPage %></a></li>
+      <% } %>
+      
+      <% if(currentPage + 1 < maxPage) { %>
+      <li class="<%= (currentPage==currentPage + 1 ? 'active' : '') %>"><a href="/admin/products?page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+      <% } %>
+      
+      <% if(currentPage < maxPage - 2) { %>
+      <li><a href="#">...</a></li>
+      <% } %>
+      
+      <% if(maxPage > 1) { %>
+      <li class="<%= (currentPage==maxPage ? 'active' : '') %>"><a href="/admin/products?page=<%= maxPage %>" ><%= maxPage %></a></li>
+      <% } %>
+
+    </ul>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.remove').click(function(evt){
+      if (!confirm('Are you sure you want to remove the item?')) {
+        return false;
+      }
+    });
+  });
+</script>

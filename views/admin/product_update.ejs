@@ -1,0 +1,229 @@
+<% layout('./layout') -%>
+
+<link href="/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+<link href="/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/js/vendor/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/vendor/jquery.chained.min.js" type="text/javascript"></script>
+<script src="/js/vendor/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+<div style="padding: 10px;">
+  <h4><a href="/admin/products">Products</a> <i class="fa fa-angle-right"></i>
+  <i class="fa fa-edit"></i> <%= product.title%> <i class="fa fa-angle-right"></i> <a href="/admin/product-images/<%=product.slug_id%>" style="color: #ccc"><i class="fa fa-picture-o"></i> Manage Images</a></h4>
+
+<div id="errors" class="alert alert-danger" style="display: none;"></div>
+
+<form id="add-product-form" class="form-horizontal" role="form" action="/admin/update/product/<%= product.slug_id %>" method="post">
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Product Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="product[title]" placeholder="Product Title" value="<%= product.title %>">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="group" class="col-sm-2 control-label">Group</label>
+    <div class="col-sm-10">
+      <select class="form-control" style="width: 200px;" name="product[group]" id="group">
+          <option value="">Please select</option>
+          <option value="lady">Lady</option>
+          <option value="gent">Gent</option>
+          <option value="unisex">Unisex</option>
+          <option value="home">Home</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="category" class="col-sm-2 control-label">Category</label>
+    <div class="col-sm-10">
+      <select class="form-control" style="width: 200px;" name="product[category]" id="category">
+        <option value="">Please select</option>
+          <option value="clothing" class="lady gent unisex">Clothing</option>
+          <option value="Shoes" class="lady gent unisex">Shoes</option>
+          <option value="bags" class="lady gent unisex">Bags</option>
+          <option value="accessories" class="lady gent unisex">Accessories</option>
+
+          <option value="paintings" class="home">Paintings</option>
+          <option value="furniture" class="home">Furniture</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="subcategory" class="col-sm-2 control-label">Sub Category</label>
+    <div class="col-sm-10">
+      <select class="form-control" style="width: 200px;" name="product[subcategory]" id="subcategory">
+        <option value="">Please select</option>
+          <option value="dresses" class="lady\clothing">Dresses</option>
+          <option value="tops" class="lady\clothing">Tops</option>
+          <option value="shirts" class="lady\clothing">Shirts</option>
+          <option value="shorts" class="lady\clothing">Shorts</option>
+          <option value="pants-and-jeans" class="lady\clothing">Pants & Jeans</option>
+          <option value="jackets-and-coats" class="lady\clothing">Jackets & Coats</option>
+          <option value="beachwear" class="lady\clothing">Beachwear</option>
+          <option value="blazers" class="lady\clothing">Blazers</option>
+
+
+
+          <option value="t-shirts" class="gent\clothing">T-Shirts</option>
+          <option value="shirts" class="gent\clothing">Shirts</option>
+          <option value="polos" class="gent\clothing">Polos</option>
+          <option value="shorts" class="gent\clothing">Shorts</option>
+          <option value="pants-and-jeans" class="gent\clothing">Pants & Jeans</option>
+          <option value="jackets-and-coats" class="gent\clothing">Jackets & Coats</option>
+          <option value="jumpers-and-cardigans" class="gent\clothing">Jumpers & Cardigans</option>
+          <option value="hoodies" class="gent\clothing">Hoodies</option>
+
+
+
+          <option value="jewelry" class="lady\accessories">Jewelry</option>
+          <option value="watches" class="lady\accessories gent\accessories">Watches</option>
+          <option value="belts" class="lady\accessories gent\accessories">Belts</option>
+          <option value="sunglasses" class="lady\accessories gent\accessories">Sunglasses</option>
+          <option value="ties" class="gent\accessories">Ties</option>
+
+
+          
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="tags" class="col-sm-2 control-label">Tags</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="product[tags]" id="tags" value="<%= product.tags %>">
+      <span class="help-block">e.g. "spring 2014, winter 2014". Please input comma(",") to separate the tags.</span>
+    </div>
+  </div>
+
+  <!-- <div class="form-group">
+    <label for="selections" class="col-sm-2 control-label">Selections</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="product[selections]" id="selections">
+    </div>
+  </div>
+ -->
+
+  <div class="form-group">
+    <label for="price" class="col-sm-2 control-label">Price</label>
+    <div class="col-sm-10">
+      <div class="input-group" style="width: 300px;">
+      <span class="input-group-addon">
+        <select id="currency" name="product[currency]">
+          <option value="">Select currency</option>
+          <option value="SGD">SGD</option>
+          <option value="USD">USD</option>
+          <option value="CNY">CNY</option>
+      </select>
+      </span>
+      <input type="text" class="form-control" name="product[base_price]" id="base_price" value="<%= product.base_price %>">
+      <span class="input-group-addon">.00</span>
+    </div>
+    <span class="help-block"><a href="http://finance.yahoo.com/currency-converter/" target="_blank">Currency Converter</a></span>
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="product[description]" id="description" rows="10"><%= product.description_edit %></textarea>
+    </div>
+  </div>
+
+  
+  <% if(user.user_type == 'admin') { %>
+  <div class="form-group">
+    <label for="designer" class="col-sm-2 control-label">Designer</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="designer" id="designer" value="<%= product.designer %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="price" class="col-sm-2 control-label">Sale Price</label>
+    <div class="col-sm-10">
+      <div class="input-group" style="width: 300px;">
+      <span class="input-group-addon">SGD</span>
+      <input type="text" class="form-control" name="product[price]" id="price" value="<%= product.price %>">
+      <span class="input-group-addon">.00</span>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <label for="status" class="col-sm-2 control-label">Status</label>
+    <div class="col-sm-10">
+      <select class="form-control" style="width: 200px;" name="product[status]" id="status">
+          <option value="">Please select</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Feature</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="product[feature]" value="<%= product.feature %>">
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $('#status').val('<%= product.status %>');
+  </script>
+  
+  <% } %>
+
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary"> Update </button>
+    </div>
+  </div>
+</form>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tags').tagit({allowSpaces: true});
+    // $('#selections').tagit({allowSpaces: true});
+
+    $("#category").chained("#group");
+    $("#subcategory").chained("#group, #category");
+
+
+    $('#group').val('<%= product.group %>').trigger('change');    
+    $('#category').val('<%= product.category %>').trigger('change');
+    $('#subcategory').val('<%= product.subcategory %>');
+
+    $('#currency').val('<%= product.currency %>');
+    
+
+    $('#add-product-form').ajaxForm({
+      beforeSubmit: function(){
+        $('#add-product-form button').append('<i class="fa fa-spinner fa-spin"></i>');
+      },
+      error: function(error){
+        $('#errors').empty().html('Server Error. Please try again later.').show();
+        $('#add-product-form button i').remove();  
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+      },
+      success: function(result) { 
+        if(result.status == "error"){
+          $('#add-product-form button i').remove();  
+          $('#errors').empty().html(result.messages).show();
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+          return false;
+        }
+        if(result.status == "success"){
+          window.location.href = "/admin/product-images/" + result.slug_id;
+        }
+      }
+    });
+
+  });
+</script>

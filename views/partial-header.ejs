@@ -1,0 +1,54 @@
+<header id="header">
+	<a id="logo" href="/"></a>
+
+	<div id="text-nav" style="
+	    position: absolute;
+	    right: 0;
+	    top: 50px;
+	    background: rgba(255,255,255,0.8);
+	    color: #333;
+	    padding: 10px;
+	    border-radius: 0 0 10px 10px;
+	">
+	<% if (user) { %>
+		Welcome, <a class="link" href="/u"><%= user.displayName %></a> / <a class="link" href="/logout">Sign out</a>
+	<% } else { %>
+	<a href="/login"><i class="fa fa-facebook-square"></i> <i class="fa fa-twitter-square"></i> <i class="fa fa-weibo"></i> Login</a> / <a href="/signup">Sign Up</a>
+	<% } %>
+	</div>
+
+
+	<nav id="menu">
+		<ul>
+				
+			<!-- <li class="menu">CATEGORIES</li> -->
+			<li class="menu"><a href="/">DESIGNERS</a></li>
+			<li class="menu"><a href="/wall">DESIGN WALL</a></li>
+			<li class="menu"><a href="/cart"><i class="fa fa-shopping-cart" style="line-height:50px;"></i><%if (cart_size>0) { %> <span class="number"><%= cart_size %></span><%}%></a></li>
+		</ul>
+	</nav>
+	
+</header>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		// $(".women").hover(
+		// 	function () { 
+		// 		$('#women-menu').slideDown('medium');
+		// 	},
+		// 	function () {
+		// 		$('#women-menu').slideUp('slideDown');
+		// 	}
+		// );
+		// $(".men").hover(
+		// 	function () { 
+		// 		$('#men-menu').slideDown('medium');
+		// 	},
+		// 	function () {
+		// 		$('#men-menu').slideUp('medium');
+		// 	}
+		// );
+	});
+	
+</script>
+

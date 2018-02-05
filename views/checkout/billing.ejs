@@ -1,0 +1,88 @@
+<%- layout('../layout') %>
+
+<link rel="stylesheet" href="/css/checkout.css">
+<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+<script src="/js/vendor/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+	#billingForm input{
+		width: 100%;
+	}
+</style>
+
+<form class="form" id="billingForm" action="/checkout/billing" method="post">
+<div id="delivery" class="checkout-container">
+<div class="header">
+	<div class="title"><i class="fa fa-truck"></i> billing & shipping address</div>
+</div>
+<div class="content">
+
+	<div id="errors" class="error message" style="display: none;"></div>
+
+	<table style="width: 100%; font-size: 14px;">
+		<tr>
+			<td colspan=3>Name <input type="text" name="billing[name]" placeholder="Name" /></td>
+		</tr>
+				
+		<tr>
+			<td>Address <input type="text" name="billing[address]" placeholder="Street address" /></td>
+			<td>City <input type="text" name="billing[city]" placeholder="City" /></td>
+			<td>Country <input type="text" name="billing[country]" placeholder="Country" /></td>
+		</tr>
+
+		<tr>
+			<td colspan=2>Address 2<input type="text" name="billing[address2]" placeholder="Unit, floor, building, etc" /></td>
+			<td>Postal Code <input type="text" name="billing[postalcode]" placeholder="Postal Code" /></td>
+		</tr>
+
+		<tr>
+			<td colspan=3>Phone<input type="text" name="billing[phone]" placeholder="Phone Number" /></td>
+		</tr>
+
+		<tr>
+			<td colspan=3>Email<input type="text" name="billing[email]" placeholder="Email" /></td>
+		</tr>
+
+	</table>	
+</div>
+
+<div class="footer">
+	<button type="submit">Proceed to Payment </button>	
+</div>
+
+</div>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $('#billingForm').ajaxForm({
+      beforeSubmit: function(){
+        $('#billingForm button').append('<i class="fa fa-spinner fa-spin"></i>');
+        $('#billingForm button').attr('disabled', true);
+      },
+      error: function(error){
+        $('#errors').empty().html('Server Error. Please try again later.').show();
+        $('#billingForm button i').remove();
+        $('#billingForm button').removeAttr('disabled');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+      },
+      success: function(result) { 
+        if(result.status == "error"){
+          $('#billingForm button i').remove();
+          $('#billingForm button').removeAttr('disabled');
+          $('#errors').empty().html(result.messages).show();
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+          return false;
+        }
+        if(result.status == "success"){
+          // window.location.href = "/admin/product-images/" + result.slug_id;
+        }
+      }
+    });
+
+});
+
+</script>
+
+

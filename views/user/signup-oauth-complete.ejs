@@ -1,0 +1,29 @@
+<% layout('../layout') -%>
+
+<style type="text/css">
+	#signupForm input[type="text"] {
+		width: 334px;
+	}
+</style>
+
+<div class="caption-container" style="margin: 20px auto; width: 350px;">
+	<div class="caption">
+		Please complete your information
+	</div>
+	<div class="content">
+	<% if (errors) { %>
+		<div class="error message"><%- errors %></div>
+	<% } %>
+	<form class="form" id="signupForm" action="/oauth-complete" method="post" onsubmit="document.getElementById('submit').disabled = true;">
+		
+		<label>email <span>as your contact</span></label>
+		<input type="text" name="user[email]" placeholder="Email"  value="<%= user.email || '' %>">
+
+		<label>your full name</label>
+		<input type="text" name="user[displayName]" placeholder="Your Full Name" value="<%= user.displayName || '' %>">
+
+		<button id="submit" type="submit">Confirm</button>
+	</form>
+	
+	</div>
+</div>

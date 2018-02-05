@@ -1,0 +1,29 @@
+<%- layout('../layout') %>
+
+<link rel="stylesheet" href="/css/checkout.css">
+<!-- 
+<div id="summary" class="checkout-container">
+<div class="header">
+	<div class="title"><i class="icon-file-alt"></i> Order Summary</div>
+</div>
+
+<div class="content round-bottom">
+	<div>order summary</div>
+	
+	<button id="editOrder" class="checkout-button" href="/checkout"><i class="icon-circle-arrow-left"></i> Edit Order</button>
+</div>
+</div>
+ -->
+
+<div id="payment" class="checkout-container">
+<div class="header">
+	<div class="title"><i class="icon-credit-card"></i> Payment</div>
+</div>
+
+<div class="content round-bottom">
+<form class="form" action="/checkout/payment" method="post">
+	<button type="submit">Pay</button>
+</form>
+</div>
+</div>
+

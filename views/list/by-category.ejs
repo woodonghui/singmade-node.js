@@ -1,0 +1,63 @@
+<% layout('../layout') -%>
+
+<style type="text/css">
+	
+	ul.breadcrumb {
+		list-style: none;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul.breadcrumb li {
+		float: left;
+	}
+
+	ul.breadcrumb li a {
+		position: relative; 
+		display: block;
+		color: #333;
+		text-decoration: none; 
+		float: left;
+		text-transform: capitalize;
+		padding: 10px 4px;
+		line-height: 15px;
+	}
+
+	ul.breadcrumb li a.arrow {
+		padding: 10px 5px;
+	}
+	
+	ul.breadcrumb li a.menu:hover { 
+		border-radius: 3px;
+		text-decoration: underline;
+	}
+	
+	ul li a.menu img {
+		vertical-align: middle;
+	}
+
+</style>
+
+<!-- <div class="plain-container">
+<ul class="breadcrumb">
+	<li><a href="/"><i class="fa fa-home"></i></a></li>
+	<% if (breadcrumb) { %>
+	<% var url = '' %>
+		<% for(var i=0; i<breadcrumb.length; i++) { %>
+			<% url = url +  '/' + breadcrumb[i] %>
+			<li><a class="arrow"><i class="fa fa-angle-right"></i></a></li>
+			<li><a class="menu" href="<%= url %>"><%= breadcrumb[i] %></a></li>
+		<% } %>
+	<% } %>
+</ul>
+</div> -->
+<div class="plain-container">
+	<% if (defaultView == 'table') { %>
+		<%- partial('partial-table-view.ejs') %>
+	<% } else { %>
+		<%- partial('partial-wall-view.ejs') %>
+	<% } %>
+</div>
+
+

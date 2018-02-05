@@ -1,0 +1,153 @@
+<% layout('./layout') -%>
+
+<script src="/js/admin.view.js"></script>
+
+<div class="caption-container">
+    <div class="caption">Admin Panel</div>
+
+    <div class="cols-2col">
+        <div class="col-1" style="width: 250px;">
+            <div class="caption">Account</div>
+            <p>User ID: <%= user.user_id %></p>
+            <p>Password: change password</p>
+        </div>
+
+        <div class="col-2" style="margin-left: 260px;">
+
+        <form class="form" action="/admin/upload" enctype="multipart/form-data" method="post">
+            
+            <div>
+                <label class="col1">Title</label>
+                <input type="text" name="title" id="title" placeholder="Title" />
+            </div>
+
+            <div>
+                <label class="col1">Tags</label>
+                <input type="text" name="tags" id="tags" placeholder="Comma separate tags" />
+            </div>
+
+            <div>
+                <label class="col1">Price</label>
+                <input type="text" name="price" id="price" placeholder="Price" />
+            </div>
+
+            <div>
+                <label class="col1">description</label>
+                <input type="text" name="description" id="description" placeholder="description" />
+            </div>
+
+             <div>
+                <label class="col1">details</label>
+                <div id="details-container" style="padding-left: 50px;">
+                    <div>
+                        <select name="details[key]">
+                            <option value="manufacture">Manufacture</option>
+                            <option value="composition">Composition</option>
+                            <option value="size">Size</option>
+                            <option value="care">Care</option>
+                            <option value="note">Note</option>
+                            <option value="model's body measurements">Model's body measurements</option>
+                        </select>
+                        <input type="text" name="details[value]" placeholder="description" />
+                        <i class="remove-detail-button icon-remove"></i>
+                    </div>
+                </div>
+                <div id="add-detail-button">Add</div>
+            </div>
+
+            <div>
+                <label class="col1">shipping</label>
+                <div id="shipping-container" style="padding-left: 50px;">
+                    <div>
+                        <select name="shipping[key]">
+                            <option value="shipping from">Shipping from</option>
+                            <option value="estimated time">Estimated time</option>
+                        </select>
+                        <input type="text" name="shipping[value]" placeholder="description" />
+                        <i class="remove-shipping-button icon-remove"></i>
+                    </div>
+                </div>
+                <div id="add-shipping-button">Add</div>
+            </div>
+
+            <div>
+                <label class="col1">images</label>
+                <div id="images-container" style="padding-left: 50px;">
+                    <div>
+                        <input type="text" name="images" placeholder="remote url of image" />
+                        <i class="remove-image-button icon-remove"></i>
+                    </div>
+                    <div id="add-image-button">Add Image</div>
+                
+                </div>
+            </div>
+
+
+
+            <!--
+            <div>
+                <label class="col1">Image</label>
+                <input type="file" name="image" id="image" accept="image/*" multiple="multiple"/>
+            </div>
+            -->
+
+            <div>
+                <label class="col1">&nbsp;</label>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+
+
+        </div>
+    </div>
+
+
+    
+
+    <div class="caption-container">
+    <div class="caption">Add Designer</div>
+
+    <form class="form" action="/admin/designer/add" method="post">
+        <div>
+            <label class="col1">Name</label>
+            <input type="text" name="name" id="name" placeholder="Name" />
+        </div>
+
+        <div>
+            <label class="col1">ID</label>
+            <input type="text" name="_id" id="id" placeholder="_id" />
+        </div>
+
+        <div>
+            <label class="col1">Title</label>
+            <input type="text" name="title" id="title" placeholder="Title" />
+        </div>
+
+        <div>
+            <label class="col1">Country</label>
+            <input type="text" name="country" id="country" placeholder="Country" />
+        </div>
+
+        <div>
+            <label class="col1">Avatar</label>
+            <input type="text" name="avatar[small]" id="avatar_small" placeholder="Small Avatar" />
+        </div>
+
+        <div>
+            <label class="col1">Avatar</label>
+            <input type="text" name="avatar[large]" id="avatar_large" placeholder="Large Avatar" />
+        </div>
+
+        <div>
+            <label class="col1">Profile</label>
+            <textarea rows="4" cols="50" name="profile" id="profile" placeholder="Profile"></textarea>
+        </div>
+
+        <div>
+            <label class="col1">&nbsp;</label>
+            <button type="submit">Add Designer</button>
+        </div>
+    </form>
+    </div>
+
+</div>

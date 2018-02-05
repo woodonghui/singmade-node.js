@@ -1,0 +1,31 @@
+<% layout('./layout') -%>
+
+<div style="padding: 10px;">
+
+  <div>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>#</th>
+          <th>user_id</th>
+          <th>displayName</th>
+          <th>user_type</th>
+          <th>provider</th>
+          <th>Action</th>
+        </tr>
+        <% for(var i=0; i<users.length; i++) {%>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= users[i].user_id %></td>
+          <td><%= users[i].displayName %></td>
+          <td><%= users[i].user_type %></td>
+          <td><%= users[i].provider %></td>
+          <td></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+  </div>  
+</div>
+

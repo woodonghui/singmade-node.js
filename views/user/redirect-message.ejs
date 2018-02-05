@@ -1,0 +1,15 @@
+<% layout('../layout') -%>
+
+<div class="plain-container" style="margin: 20px auto; width: 550px;">
+	<div class="content">
+		<% if (messages) { %>
+		<div class="success message"><i class="fa fa-thumbs-up fa-2x"></i> <%- messages %></div>
+		<% } else { %>
+		<div class="success message"><i class="fa fa-home fa-2x"></i> <a href="/" class="link">Return the home page</a></div>
+		<% } %>
+	</div>
+</div>
+
+	
+
+

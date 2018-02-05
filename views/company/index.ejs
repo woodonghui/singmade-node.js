@@ -1,0 +1,48 @@
+<% layout('../layout') -%>
+
+<style type="text/css">
+	ul.side-menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul.side-menu li {
+		display: block;
+		margin-bottom: 5px; 
+		cursor: pointer;
+		border-radius: 3px;
+	}
+	ul.side-menu li a{
+		display: block;
+		width: 180px;
+		padding: 5px;
+	}
+	ul.side-menu li:hover, ul.side-menu li.selected {
+		background: #ee5193;
+	}
+	ul.side-menu li a:hover, ul.side-menu li.selected a{
+		color: #fff;
+	}
+
+	#about-us-content p:first-child {
+		margin-top: 0;
+	}
+
+</style>
+
+<div class="plain-container cols-2col" style="margin: 20px; padding: 20px;">
+	<div class="col-1">
+		<ul class="side-menu">
+			<li class="<%= text == 'about-us' ? 'selected' : ''%>"><a href="/company/about-us">About Us</a></li>
+			<li class="<%= text == 'collaboration' ? 'selected' : ''%>"><a href="/company/collaboration">Collaboration</a></li>
+			<li class="<%= text == 'privacy-policy' ? 'selected' : ''%>"><a href="/company/privacy-policy">Privacy Policy</a></li>
+			<li class="<%= text == 'terms-and-conditions' ? 'selected' : ''%>"><a href="/company/terms-and-conditions">Terms and Conditions</a></li>
+		</ul>	
+	</div>
+	<div id="about-us-content" class="col-2" style="margin-left: 210px; padding: 0 10px 10px 20px; border-left: 1px dotted #fff;">
+
+		<%- partial(text + '.ejs') %>
+		
+	</div>
+</div>

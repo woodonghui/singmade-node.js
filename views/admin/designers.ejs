@@ -1,0 +1,206 @@
+<% layout('./layout') -%>
+
+<div style="padding: 10px;">
+
+  <div style="margin-bottom: 20px;">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addDesignerModal">
+      Add Designer
+    </button>
+
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>#</th>
+          <th>_id</th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Country</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+        <% for(var i=0; i<designers.length; i++) {%>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= designers[i]._id %></td>
+          <td><%= designers[i].name %></td>
+          <td><%= designers[i].title %></td>
+          <td><%= designers[i].country %></td>
+          <td><%= designers[i].type %></td>
+          <td><button type="button" data-id="<%= designers[i]._id %>" class="action update btn btn-default" data-toggle="modal" data-target="#updateDesignerModal">Update</button></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addDesignerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Designer</h4>
+      </div>
+      <div class="modal-body">
+
+<form class="form-horizontal" role="form" action="/admin/designer/add" method="post">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="_id" class="col-sm-2 control-label">ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="_id" id="_id" placeholder="Slug name as ID">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="country" class="col-sm-2 control-label">Country</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="country" id="country" placeholder="Country">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="avatar[small]" id="avatar_small" placeholder="Small Avatar">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="avatar[large]" id="avatar_large" placeholder="Large Avatar">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="profile" class="col-sm-2 control-label">Profile</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="profile" id="profile" rows="3"></textarea>
+    </div>
+  </div>  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Add</button>
+    </div>
+  </div>
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateDesignerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Update Designer</h4>
+      </div>
+      <div class="modal-body">
+
+<div class="progress progress-striped active">
+  <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+  </div>
+</div>
+
+<form class="form-horizontal" role="form" action="/admin/designer/update" method="post">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="_id" class="col-sm-2 control-label">ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="_id" id="_id" placeholder="Slug name as ID" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="country" class="col-sm-2 control-label">Country</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="country" id="country" placeholder="Country">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="avatar[small]" id="avatar_small" placeholder="Small Avatar">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="avatar[large]" id="avatar_large" placeholder="Large Avatar">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="profile" class="col-sm-2 control-label">Profile</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="profile" id="profile" rows="3"></textarea>
+    </div>
+  </div>  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Update</button>
+    </div>
+  </div>
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.action.update').click(function(){
+      $('#updateDesignerModal form :input').attr('disabled', true);
+      $('#updateDesignerModal div.progress').show();
+      var _id = $(this).data('id');
+      $.get('/api/designer/' + _id, function(data){
+        if(data){
+          $('#updateDesignerModal #name').val(data.name);
+          $('#updateDesignerModal #_id').val(data._id);
+          $('#updateDesignerModal #title').val(data.title);
+          $('#updateDesignerModal #country').val(data.country);
+          $('#updateDesignerModal #avatar_small').val(data.avatar.small);
+          $('#updateDesignerModal #avatar_large').val(data.avatar.large);
+          $('#updateDesignerModal #profile').val(data.profile);
+          $('#updateDesignerModal form :input').attr('disabled', false);
+          $('#updateDesignerModal div.progress').hide();
+        }
+      });
+
+    });
+  });
+</script>

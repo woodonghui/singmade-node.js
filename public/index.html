@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>boutiquesg</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="icon" type="image/ico" href="favicon.ico"/>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/responsiveslides.css">
+		<link rel="stylesheet" href="css/mfglabs_iconset.css">
+		
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+    </head>
+    <body>
+	
+	
+		<div id="fb-root"></div>
+		<script>
+
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '624265027590000', // App ID
+		      channelUrl : 'http://www.boutiquesg.com/channel.html', // Channel File
+		      status     : true, // check login status
+		      cookie     : true, // enable cookies to allow the server to access the session
+		      xfbml      : true  // parse XFBML
+		    });
+
+		    // Additional init code here
+		
+			FB.getLoginStatus(function(response) {
+			  if (response.status === 'connected') {
+			    // connected
+			  } else if (response.status === 'not_authorized') {
+			    // not_authorized
+				console.log('not authorized');
+			  } else {
+			    // not_logged_in
+				console.log('not logged in');
+			  }
+			 });
+		  };
+		
+		
+
+		  // Load the SDK Asynchronously
+		  (function(d){
+		     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement('script'); js.id = id; js.async = true;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     ref.parentNode.insertBefore(js, ref);
+		   }(document));
+		</script>
+		
+	
+	
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+		<!-- blocker -->
+		<div id="blocker" style="display: none;">
+			<div class="loaderCircle"></div>
+		</div>
+				
+		<!-- popup -->
+		<div id="popup"> 		
+			<div id="popup-content"> <!-- popup content container -->
+			</div>
+		</div>
+		
+		
+        <!-- Add your site or application content here -->
+		<div id="container">
+			<header id="header">
+				<a id="logo">boutique</a>
+			
+				<nav id="menu">
+					<ul>						
+						<li class="facebook"><a href="/auth/facebook"><i class="icon-facebook_circle"></i></a></li>
+						<li><i class="icon-google_plus_circle"></i></li>
+						<li><i class="icon-twitter_circle "></i></li>
+						<li class="cart">Cart(<span class="simpleCart_quantity">0</span>)</li>
+					</ul>
+				</nav>
+			</header>
+			
+			<div id="designers">
+				<div id="designers-list" style="display: none;">
+					<ul>
+						<li>
+							<a href="#"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_scale,e_grayscale,w_113/v1362156363/Esther_Ko_okmtzd.jpg" alt=""></a>
+						</li>
+						<li>
+							<a href="#"><img src="http://res.cloudinary.com/boutiquesg/image/upload/c_scale,e_grayscale,w_113/v1362156365/Sing_Sing_axjzfu.jpg" alt=""></a>
+						</li>
+					</ul>
+					
+				</div>				
+				<div class="button"><i class="icon-chevron_down icon1x"></i></div>
+			</div>
+			
+			
+			<div id="main" role="main">
+			  <ul id="tiles"></ul>
+
+			  <div id="loader">
+				<div class="loaderCircle"></div>
+			  </div>
+			</div>
+			  
+			<footer id="footer">
+			<div id="footer-list-container">
+				<p class="copyright">All photographs appearing on boutiquesg.com are copyrighted and protected under international copyright laws. The images may not be reproduced in any form, stored, or manipulated without prior written	permission from boutiquesg.com and the copyright holder(s).</p>
+			</div>
+			</footer>
+			
+		</div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/vendor/jquery.wookmark.min.js"></script>
+		
+		<script type="text/javascript" src="js/vendor/validate.min.js"></script>
+		<script src="js/vendor/responsiveslides.min.js"></script>
+		<script src="js/vendor/simpleCart.min.js"></script>
+		
+		
+		<script src="js/vendor/underscore-min.js"></script>
+		<script src="js/vendor/backbone-min.js"></script>
+		
+		<script src="js/app.js"></script>
+        
+			
+		<!-- Once the page is loaded, initalize the plug-in. -->
+		  <script type="text/javascript">
+			var handler = null;
+			var page = 1;
+			var isLoading = false;
+			
+			var test;
+			
+			// Prepare layout options.
+			var options = {
+			  autoResize: true, // This will auto-update the layout when the browser window is resized.
+			  container: $('#tiles'), // Optional, used for some extra CSS styling
+			  offset: 4, // Optional, the distance between grid items
+			  itemWidth: 210 // Optional, the width of a grid item
+			};
+			
+			/**
+			 * When scrolled all the way to the bottom, add more tiles.
+			 */
+			function onScroll(event) {
+			  // Only check when we're not still waiting for data.
+			  if(!isLoading) {
+				// Check if we're within 100 pixels of the bottom edge of the broser window.
+				var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
+				if(closeToBottom) {
+				  loadData();
+				}
+			  }
+			};
+			
+			/**
+			 * Refreshes the layout.
+			 */
+			function applyLayout() {
+			  // Clear our previous layout handler.
+			  if(handler) handler.wookmarkClear();
+			  
+			  // Create a new layout handler.
+			  handler = $('#tiles li');
+			  handler.wookmark(options);
+			};
+		  </script>
+		  		
+
+		<script>
+		  simpleCart({
+		    checkout: {
+		      type: "PayPal",
+		      email: "woo.donghui@gmail.com"
+		    },
+			currency: "SGD",
+			cartColumns: [
+				{ attr: "name" , label: "Item" } ,
+				{ attr: "price" , label: "Price", view: 'currency' } ,
+				{ attr: "quantity" , label: "Qty" } ,
+				{ attr: "total" , label: "SubTotal", view: 'currency' } ,
+				{ view: "remove" , text: "Remove" , label: false }
+			],
+			
+			data: {}
+			
+		  });
+		</script>
+		
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-34306806-1'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<% if (message) { %>
+	<div class="<%= message.status %> message"><%- message.messages %></div>
+<% } %>
+
+<form class="form align" id="form" action="/u/account/update" method="post" onsubmit="document.getElementById('submit').disabled = true;">
+
+	<div>
+	<label>account</label>
+	<% if (user.provider == 'local') { %>
+		<a href="/u/account" class="link"><%= user.user_id %></a>
+	<% } else { %>
+		<img src="<%= user.profile_image_url %>" /> <%= user.displayName %> (<%= user.provider %>)
+	<% } %>
+	</div>
+
+	<% if (user.provider == 'local') { %>
+	<div>
+	<label>current password</label>
+	<input type="password" name="account[currentPassword]" placeholder="Current Password">
+	</div>
+
+	<div>
+	<label>new password</label>
+	<input type="password" name="account[password]" placeholder="New Password">
+	</div>
+
+	<div>
+	<label>&nbsp;</label>
+	<button id="submit" type="submit">Update Account</button>
+	</div>
+	<% } %>
+
+	
+</form>

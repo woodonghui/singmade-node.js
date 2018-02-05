@@ -1,0 +1,51 @@
+<div class="table-view">
+	<% if(!pieces){ %>
+	Sorry, there are no designs for sale.
+	<% } else { %>
+		
+		<ul>
+		<% for(var i=0; i<pieces.length; i++) { %>
+			<li class="item">
+			<a href='/piece/<%= pieces[i].slug_id %>'><img src='<%= pieces[i].table_image.url %>' width='215' height='215'></a>
+			<div class="title"><a href='/piece/<%= pieces[i].slug_id %>'><%= pieces[i].title %></a></div>
+			<div class="info">
+				<div class="owner">by <a href=""><%= pieces[i].designer %></a></div>
+				<div class="price">SGD <b><%= pieces[i].price %></b></div>
+			</div>
+			</li>
+		<% } %>
+		</ul>
+
+
+		<div class="pagination">
+		<a href="/<%= breadcrumb.join('/') %>/1?<%= query %><%= query? '&'+sort : sort %>" class="<%= (currentPage==1 ? 'selected' : '') %>">1</a>
+		
+		<% if(currentPage > 3) { %>
+		<span>...</span>
+		<% } %>
+		
+		<% if(currentPage - 1 > 1) { %>
+		<a href="/<%= breadcrumb.join('/') %>/<%= currentPage - 1 %>?<%= query %><%= query? '&'+sort : sort %>" class="<%= (currentPage==currentPage - 1 ? 'selected' : '') %>"><%= currentPage - 1 %></a>
+		<% } %>
+		
+		<% if(currentPage > 1 && currentPage < maxPage) { %>
+		<a href="/<%= breadcrumb.join('/') %>/<%= currentPage %>?<%= query %><%= query? '&'+sort : sort %>" class="selected"><%= currentPage %></a>
+		<% } %>
+		
+		<% if(currentPage + 1 < maxPage) { %>
+		<a href="/<%= breadcrumb.join('/') %>/<%= currentPage + 1 %>?<%= query %><%= query? '&'+sort : sort %>" class="<%= (currentPage==currentPage + 1 ? 'selected' : '') %>"><%= currentPage + 1 %></a>
+		<% } %>
+		
+		<% if(currentPage < maxPage - 2) { %>
+		<span>...</span>
+		<% } %>
+		
+		<% if(maxPage > 1) { %>
+		<a href="/<%= breadcrumb.join('/') %>/<%= maxPage %>?<%= query %><%= query? '&'+sort : sort %>" class="<%= (currentPage==maxPage ? 'selected' : '') %>"><%= maxPage %></a>
+		<% } %>
+		</div>
+
+	<% } %>
+</div>
+
+

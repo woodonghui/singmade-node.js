@@ -1,0 +1,49 @@
+<div id="cart" class="checkout-container">
+<div class="header">
+	<div class="title"><i class="fa fa-shopping-cart"></i> shopping cart
+	</div>
+</div>
+
+<div class="content">
+
+	<table id="cart-table" style="width: 100%; font-size: 14px;">
+		<tr>
+			<th align="left">Item</th>
+			<th align="center">Quantity</th>
+			<th align="center">Remove</th>
+			<th align="center">Price</th>
+		</tr>
+		<% for(var i=0; i<cart.length; i++) {%>
+		<tr>
+			<td align="left"><a href="/piece/<%= cart[i].slug_id %>" target="_blank"><img src="<%= cart[i].thumbnail %>"> </a><%= cart[i].title %> <strong><%= cart[i].selection || '' %></strong></td>
+			<td align="center"><input type="text" value="<%= cart[i].amount %>"/> <a class="action update" href="/cart/update/<%= cart[i].slug_id %>">Update</a></td>
+			<td align="center"><a class="action" href="/cart/remove/<%= cart[i].cart_id %>"><i class="fa fa-trash-o"></i> Remove</a></td>
+			<td align="center">SGD <%= cart[i].price %></td>
+		</tr>
+		<% } %>
+		<tr>
+			<td colspan=4 align="right"><strong>Grand Total: SGD <%= total %></strong></td>
+		</tr>
+	</table>
+	
+</div>
+
+<!-- <div class="footer">
+	<a class="link" href="/">Continue Shopping</a> or <a class="button white" href="/checkout/billing-and-shipping">Checkout</a>
+</div> -->
+
+<div class="footer">
+	<a class="link" href="/">Continue Shopping</a> or <a href="/checkout/payment">
+		<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif">
+	</a>
+</div>
+
+
+</div>
+
+<script type="text/javascript">
+	$('a.action.update').click(function(){		
+		window.location.href = $(this).attr('href') + '/' + $(this).prev().val();
+		return false;
+	});
+</script>

@@ -1,0 +1,200 @@
+<% layout('layout') -%>
+
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+
+	a.tag {
+		cursor: pointer;
+		padding: 3px;
+		border-radius: 3px;
+		color: #fff;
+		background: #ee5193;
+		text-shadow: none;
+	}
+
+	#description-container {
+		font-size: 13px;
+	}
+
+	#description-container img.zoomImg {
+		z-index: -999;
+	}
+
+	#description-container div.title {
+		font-size: 25px;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+
+	#description-container button {
+	    width: 100%;
+	    font-size: 25px;
+	    font-weight: bold;
+	    height: 60px;
+	}
+
+
+	#description-container > div {
+		margin: 5px;
+	}
+
+	#description-container > div .caption {
+		text-transform: capitalize;
+		color: #000;
+		font-size: 16px;
+		margin-bottom: 5px;
+	}
+
+
+	div#description-container .label {
+		float: left;
+		width: 120px;
+		text-transform: capitalize;
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+	div#description-container .spec {
+		margin-left: 130px;
+		margin-bottom: 5px;
+	}
+
+	#more-designs ul li {
+		padding: 1px;
+	}
+	#more-designs ul li img{
+		width: 105px;
+		height: 105px;
+	}
+
+
+	#selections li {
+		padding: 5px 10px;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	#selections li.selected {
+		background: rgba(238, 81, 147, 0.7);
+		color: #fff;
+	}
+
+</style>
+
+
+<link rel="stylesheet" href="/css/responsiveslides.css">
+
+<div class="nav-arrow left"><i class="fa fa-angle-left fa-3x"></i></div>
+<div class="nav-arrow right"><i class="fa fa-angle-right fa-3x"></i></div>
+
+<div id="piece-container" style="padding-top: 10px;">
+
+	<div class="left-container" style="float: left; width: 450px;">
+		<div id="slider-container" class="plain-container-black" style="margin-top: 0;">
+			<div style="margin: 5px; position: absolute; z-index: 100; color: #000"><i class="fa fa-camera"></i> hover to magnify</div>
+			<ul class="rslides" id="slider1">
+				<% for(var i=0; i<piece.detail_images.length; i++) {%>
+				<li><img src="<%= piece.detail_images[i].large %>"></li>
+				<% } %>
+			</ul>
+			
+			<ul id="slider1-pager" style="margin: 1em 0">
+				<% for(var i=0; i<piece.detail_images.length; i++) {%>
+				<li><a href="#"><img src="<%= piece.detail_images[i].thumbnail %>"></a></li>
+				<% } %>
+			</ul>
+		</div>
+
+		<div class="plain-container">
+			<div class="caption">description</div>
+			<p style="font-size: 13px;"><%- piece.description %></p>
+		</div>
+		
+
+	</div>
+	
+	<div class="right-container" style="float: right; width: 510px;">
+		<div id="description-container" class="plain-container" style="margin-top: 0;">
+			
+			<div class="title"><%= piece.title %></div>
+			<% if(piece.tag) { %>
+			<a class="tag"><%= piece.tag %></a>
+			<% } %>
+			<div class="designer">
+				<div class="caption"><i class="fa fa-scissors"></i> designer</div>
+				<div class="cols-2col plain-container" style="margin: 0;background:rgba(255,255,255,0.5)">
+					<div class="col-1">
+					<a href="/designer/<%= piece.designer._id %>"><img src="<%= designer.avatar.small %>" alt="" style="border-radius: 50px;"></a>
+					</div>
+					<div class="col-2">
+						<div style="font-weight: bold; font-size: 18px;"><a href="/designer/<%= piece.designer._id %>"><%= designer.name %>, <%= designer.country %></a></div>
+						<div style="font-size: 13px; margin-top: 10px;">
+							<%- designer.profile %>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<% if (piece.selections && piece.selections.values) { %>
+			<div>
+				<ul id="selections" class="grid">
+					<% for(var i=0; i<piece.selections.values.length; i++) { %>
+					<li><%= piece.selections.values[i] %></li>
+					<% } %>
+				</ul>
+			</div>
+			<% } %>
+			
+
+			<button class="button buy"><i class="fa fa-tag"></i> <span style="border-right: 1px dotted #fff; padding-right: 10px; margin-right: 10px;">S$ <%= piece.price %></span>Add to Cart </button>
+			
+
+			<% if (piece.details && piece.details.shipping) {	%>
+			<div class="delivery">
+				<div class="caption"><i class="fa fa-truck"></i> shipping information</div>
+				<div>
+					<% for(var i=0; i<piece.details.shipping.length; i++) {%>
+					<div class="label"><%= piece.details.shipping[i].k %></div><div class="spec"><%- piece.details.shipping[i].v %></div>
+					<% } %>
+				</div>
+			</div>
+			<% } %>
+
+
+			<div><wb:share-button appkey="2uwlpu" addition="simple" type="button" ralateUid="2044086547" default_text="<%= piece.title %>" pic="<%= piece.detail_images[0].large %>"></wb:share-button></div>
+			
+		</div>
+
+		<div id="more-designs" class="plain-container">
+			<div class="caption">more designs <i class="fa fa-spinner fa-1x fa-spin" style="color: #333"></i></div>
+		</div>
+				
+		
+	</div>
+	
+	<div id="clear" style="clear: both;"></div>
+</div>
+
+
+<script src="/js/vendor/underscore-min.js"></script>
+<script src="/js/vendor/backbone-min.js"></script>
+
+<script type="text/javascript">
+	var slug_id, piece_id;
+	var designer_id
+	<% if (piece) {	%>
+		slug_id = '<%= piece.slug_id %>';
+		piece_id = '<%= piece.id %>';
+	<% } %>
+
+	<% if (designer) {	%>
+		designer_id = '<%= designer._id %>';
+	<% } %>
+</script>
+
+<script src="/js/vendor/responsiveslides.min.js"></script>
+<script src="/js/vendor/jquery.zoom-min.js"></script>
+<script src="/js/piece.view.js"></script>
+
+
+

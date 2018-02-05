@@ -1,0 +1,65 @@
+<% layout('../layout') -%>
+
+<div id="user-panel" class="caption-container">
+	<div class="caption">
+		<%= user.displayName %>
+	</div>
+	<div class="cols-2col">
+		<div class="col-1" style="width: 300px;">
+			<ul class="grid">
+				<li class="<%= tab=='account' ? 'selected' : '' %>">
+					<a href="/u/account">
+						<div>
+						<i class="fa fa-key fa-3x"></i>
+						<br>Account
+						</div>
+					</a>
+				</li>
+				<li class="<%= tab=='profile' ? 'selected' : '' %>">
+					<a href="/u/profile">
+						<div>
+						<i class="fa fa-user fa-3x"></i>
+						<br>Update Profile
+						</div>
+					</a>
+				</li>
+
+				<li class="<%= tab=='orders' ? 'selected' : '' %>">
+					<a href="#">
+						<div>
+						<i class="fa fa-shopping-cart fa-3x"></i>
+						<br>My Orders
+						</div>
+					</a>
+				</li>
+				
+				<% if(user.user_type == 'designer') { %>
+				<li>
+					<a href="/admin">
+						<div>
+						<i class="fa fa-book fa-3x"></i>
+						<br>Admin
+						</div>
+					</a>
+				</li>
+				<% } %>
+
+				<li>
+					<a href="/logout">
+						<div>
+						<i class="fa fa-sign-out fa-3x"></i>
+						<br>Sign Out
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-2" style="margin-left: 310px; padding: 5px 20px;">
+			<%- partial('user-panel-partial-' + tab + '.ejs') %>
+		</div>
+		
+	</div>
+</div>
+
+

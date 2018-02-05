@@ -1,0 +1,134 @@
+<% layout('../layout') -%>
+
+<style type="text/css">
+	
+	#navigator ul.breadcrumb {
+		list-style: none;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+	}
+
+	#navigator ul.breadcrumb li {
+		float: left;
+	}
+
+	#navigator ul.breadcrumb li a {
+		position: relative; 
+		display: block;
+		background: #eee;
+		color: #333;
+		text-decoration: none; 
+		padding: 10px 0 10px 50px;
+		float: left;
+		text-transform: capitalize;
+	}
+
+	#navigator ul.breadcrumb li a:after { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+		border-bottom: 50px solid transparent;
+		border-left: 30px solid #eee;
+		position: absolute;
+		top: 50%;
+		margin-top: -50px; 
+		left: 100%;
+		z-index: 2; 
+	}
+
+	#navigator ul.breadcrumb li a:before { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 50px solid transparent;       
+		border-bottom: 50px solid transparent;
+		border-left: 30px solid #ccc;
+		position: absolute;
+		top: 50%;
+		margin-top: -50px; 
+		margin-left: 1px;
+		left: 100%;
+		z-index: 1; 
+	}
+
+	#navigator ul.breadcrumb li:first-child a {
+		padding-left: 20px;
+	}
+
+	/*
+	#navigator ul.breadcrumb li a:hover { background: #ff549c; }
+	#navigator ul.breadcrumb li a:hover:after { border-left-color: #ff549c; !important; }
+*/
+	#navigator ul li a img {
+		/*display: block;
+		margin: auto;*/
+		vertical-align: middle;
+	}
+
+</style>
+
+
+<script src="/js/icons.js"></script>
+<script>
+	$(document).ready(function(){
+		var group = $('#navigator ul li:nth-child(2)');
+		var group_text = $('a', group).text();
+		var cat = $('#navigator ul li:last-child');
+		var cat_text = $('a', cat).text();
+		var icon = icons[group_text + '-' + cat_text];
+		if(icon){
+			var src = 'http://res.cloudinary.com/boutiquesg/image/upload/c_scale,w_15/' + icon;
+			var image = '<img src="' + src + '">' + ' ' + cat_text;
+			$('a', cat).empty();
+			$('a', cat).append(image);
+		}
+
+		// $('#navigator ul li').each(function(){
+		// 	var text = $('a', this).text();
+		// 	var src = 'http://res.cloudinary.com/boutiquesg/image/upload/c_scale,w_40/' + icons[text];
+		// 	var image = '<img src="' + src + '">';
+		// 	$('a', this).empty();
+		// 	$('a', this).append(image);
+		// });
+	});
+</script>
+
+<div id="navigator" class="plain-container">
+	<div class="content">
+		<ul class="breadcrumb">
+			<li><a href="/"><i class="fa fa-home"></i></a></li>
+			<% if (breadcrumb) { %>
+			<% var url = '' %>
+				<% for(var i=0; i<breadcrumb.length; i++) { %>
+					<% url = url +  '/' + breadcrumb[i] %>
+					<li><a href="<%= url %>"><%= breadcrumb[i] %></a></li>
+				<% } %>
+			<% } %>
+		</ul>
+	</div>
+</div>
+
+<div class="caption-container">
+	<% if(!pieces){ %>
+	<div class="caption">designs on sale</div>
+	<div class="content">Sorry, there are no designs for sale.</div>
+	<% } else { %>
+		<div class="caption">
+			designs on sale
+			<% if (defaultView == 'table') { %>
+				<a class="right" href="/<%= breadcrumb.join('/') %>?view=waterfall"> waterfall view</a>
+			<% } else { %>
+				<a class="right" href="/<%= breadcrumb.join('/') %>"><i class="fa fa-th"></i> table view</a>
+			<% } %>
+		</div>
+		<% if (defaultView == 'table') { %>
+			<%- partial('partial-table-view.ejs') %>
+		<% } else { %>
+			<%- partial('partial-waterfall-view.ejs') %>
+		<% } %>
+	<% } %>
+</div>

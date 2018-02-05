@@ -1,0 +1,31 @@
+{
+  "name": "boutiquesg-on-nodejs",
+  "version": "0.0.1",
+  "dependencies": {
+    "async": "0.2.9",
+    "bcrypt": "^0.8.5",
+    "cloudinary": "1.0.3",
+    "connect-flash": "0.1.1",
+    "connect-mongo": "^0.8.2",
+    "ejs": "0.8.x",
+    "ejs-locals": "*",
+    "express": "3.x",
+    "mongoose": "^4.3.1",
+    "nodemailer": "0.5.x",
+    "passport": "0.1.x",
+    "passport-facebook": "0.1.x",
+    "passport-local": "0.1.6",
+    "passport-sina": "0.0.3",
+    "passport-twitter": "0.1.5",
+    "paypal-ec": "0.2.x",
+    "underscore": "1.4.4",
+    "validator": "1.2.0"
+  },
+  "engines": {
+    "node": "5.1.x",
+    "npm": "3.3.x"
+  },
+  "devDependencies": {
+    "bcrypt": "^0.8.5"
+  }
+}

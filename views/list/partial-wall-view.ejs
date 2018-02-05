@@ -1,0 +1,79 @@
+<style type="text/css">
+
+#tiles {
+	position: relative;
+	overflow: visible;
+}
+
+#tiles li {
+	width: 180px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border-radius: 5px;
+	display: none;
+	padding: 0px;
+}
+
+#tiles li img{
+	display: block;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#tiles li p{
+	position: relative;
+	color: #fff;
+	font-size: 12px;
+	line-height: 15px;
+	margin: 10px 0px 15px 5px; 
+}
+
+#tiles li span.title{
+	display: block;
+	width: 60%;
+}
+
+#tiles li span.title a {
+	font-style: italic;
+	color: #333;
+}
+#tiles li span.title a:hover { text-decoration: underline; }
+
+#tiles li span.price {
+	color: #fff;
+	display: block;
+	float: right;
+	font-size: 17px;
+	padding: 4px 8px;
+	position: absolute;
+	right: 0;
+	top: 0px;
+}
+
+</style>
+
+<div class="waterfall-view">
+	<div id="tiles-container">
+		<ul id="tiles"></ul>
+	</div>	
+	
+	<div id="loader">
+		<div class="loaderMore">
+			<div class="loaderButton" style="display:none;">
+			<i class="fa fa-ellipsis-h fa-2x"></i>
+			<div>LOAD MORE</div>
+			</div>
+		<i class="fa fa-spinner fa-2x fa-spin loaderSpinner"></i>
+		</div>
+	</div>
+</div>
+
+<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+<script src="/js/vendor/underscore-min.js"></script>
+<script src="/js/vendor/backbone-min.js"></script>
+
+<script type="text/javascript">
+	var baseUri = '/<%= breadcrumb.join('/') %>';
+</script>
+
+<script src="/js/vendor/jquery.wookmark.min.js"></script>
+<script src="/js/list.view.js"></script>
+

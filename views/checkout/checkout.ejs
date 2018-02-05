@@ -1,0 +1,22 @@
+<%- layout('../layout') %>
+
+<link rel="stylesheet" href="/css/checkout.css">
+
+<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+
+<% if(!cart) { %>
+<div id="cart" class="checkout-container">
+<div class="header">
+	<div class="title"><i class="fa fa-shopping-cart"></i> shopping cart
+  <a class="link" href="/" style="float: right;">continue shopping</a>
+  </div>
+</div>
+
+<div class="content round-bottom">
+Your shopping cart is empty.
+</div>
+</div>
+
+<% } else { %>
+<%- partial('cart.ejs') %>
+<% } %>
